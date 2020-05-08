@@ -14,9 +14,9 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
+			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/ride_tracker" />
+			value="jdbc:mysql://localhost:3306/ride_tracker?verifyServerCertificate=false&amp;useSSL=false&amp;serverTimezone=Europe/Moscow" />
 		<property name="username" value="root" />
 		<property name="password" value="mrtomato" />
 	</bean>
