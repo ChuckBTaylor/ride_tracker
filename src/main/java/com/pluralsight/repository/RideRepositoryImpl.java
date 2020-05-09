@@ -40,6 +40,16 @@ public class RideRepositoryImpl implements RideRepository {
       }, keyHolder);
       System.out.println("Ride entered into db");
       Number id = keyHolder.getKey();
+
+//      SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
+//      insert.setGeneratedKeyName("id");
+//      Map<String, Object> data = new HashMap<>();
+//      data.put("duration", ride.getDuration());
+//      data.put("name", ride.getName());
+//      List<String> columns = Arrays.asList("duration", "name");
+//      insert.setTableName("ride");
+//      insert.setColumnNames(columns);
+//      Number id = insert.executeAndReturnKey(data);
       return findRideById(String.valueOf(id));
    }
 
