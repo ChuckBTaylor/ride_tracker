@@ -1,6 +1,7 @@
 package com.pluralsight.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class RideController {
    
    @PatchMapping(value = "/rides")
    public ResponseEntity<List<Ride>> patchRides(@RequestBody BatchRequest batchRequest){
-      
+      List<Ride> updatedRides = rideService.batchUpdateRides(batchRequest);
+      return ResponseEntity.ok(new ArrayList<>());
    }
 }

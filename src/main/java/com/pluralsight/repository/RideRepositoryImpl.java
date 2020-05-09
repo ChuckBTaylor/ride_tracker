@@ -77,4 +77,14 @@ public class RideRepositoryImpl implements RideRepository {
       return ride;
    }
 
+   @Override
+   public void updateRides(List<Object[]> pairs) {
+      String batchUpdateSql = "UPDATE ride SET ride_date = ? WHERE id = ?";
+      int[] affectedRows = jdbcTemplate.batchUpdate(batchUpdateSql, pairs);
+      for (int i : affectedRows) {
+         System.out.println("row affected " + i);
+      }
+      
+   }
+
 }

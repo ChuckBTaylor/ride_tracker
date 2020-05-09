@@ -13,6 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.pluralsight.model.BatchRequest;
@@ -22,11 +23,12 @@ public class RestControllerTest {
    
    private String local8080 = "http://localhost:8080/ride_tracker";
    private URI uri;
-   private RestTemplate restTemplate= new RestTemplate();
+   private RestTemplate restTemplate;
    
    @Before
    public void SetUp() {
       uri = null;
+      restTemplate = new RestTemplate();
    }
 
    @Test(timeout = 3000)
@@ -96,6 +98,7 @@ public class RestControllerTest {
    
    @Test(timeout = 4000)
    public void testBatchUpdate(){
+      restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
       URI uri = URI.create(local8080 + "/rides");
       RequestEntity<BatchRequest> batchRequest = new RequestEntity<>(new BatchRequest(), HttpMethod.PATCH, uri);
       ResponseEntity<List<Ride>> response = restTemplate.exchange(batchRequest, new ParameterizedTypeReference<List<Ride>>() {});
