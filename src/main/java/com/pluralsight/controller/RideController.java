@@ -35,7 +35,8 @@ public class RideController {
    @PostMapping(value = "/rides")
    public ResponseEntity<Ride> createRide(@RequestBody Ride ride) {
       Ride createdRide = rideService.createRide(ride);
-      return ResponseEntity.created(URI.create("http://localhost:8080/ride_tracker/rides/1")).body(createdRide);
+      int createdId = createdRide.getId();
+      return ResponseEntity.created(URI.create("http://localhost:8080/ride_tracker/rides/" + createdId)).body(createdRide);
    }
 
 }
