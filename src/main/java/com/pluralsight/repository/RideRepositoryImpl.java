@@ -70,4 +70,11 @@ public class RideRepositoryImpl implements RideRepository {
       return rides;
    }
 
+   @Override
+   public Ride updateRide(Ride ride) {
+      String updateSql = "UPDATE ride SET name = ?, duration = ? WHERE id = ?";
+      jdbcTemplate.update(updateSql, ride.getName(), ride.getDuration(), ride.getId());
+      return ride;
+   }
+
 }
