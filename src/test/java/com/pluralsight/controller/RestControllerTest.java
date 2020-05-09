@@ -44,13 +44,13 @@ public class RestControllerTest {
    public void testCreateRide() {
       RestTemplate restTemplate = new RestTemplate();
       Ride ride = new Ride();
-      ride.setDuration(40);
-      ride.setName("Willow Trail");
+      ride.setDuration(27);
+      ride.setName("Sagebrush Trail");
       URI uri = URI.create(local8080 + "/rides");
       RequestEntity<Ride> requestEntity = new RequestEntity<>(ride, HttpMethod.POST, uri);
       ResponseEntity<Ride> response = restTemplate.exchange(requestEntity, Ride.class);
       
       assertEquals(HttpStatus.CREATED,response.getStatusCode());
-//      System.out.println("Ride name created: " + response.getBody().getName());
+      System.out.println("Ride name created: " + response.getBody().getName());
    }
 }
