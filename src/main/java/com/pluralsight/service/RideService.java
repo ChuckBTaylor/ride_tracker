@@ -12,5 +12,6 @@ public interface RideService {
 	Ride findRideById(String rideId);
    Ride updateRide(Ride ride);
    List<Ride> batchUpdateRides(BatchRequest batchRequest);
+   void deleteRideById(String rideId);
 
 }

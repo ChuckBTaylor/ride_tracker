@@ -3,11 +3,14 @@ package com.pluralsight.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -85,6 +88,15 @@ public class RideRepositoryImpl implements RideRepository {
          System.out.println("row affected " + i);
       }
       
+   }
+
+   @Override
+   public void deleteRideById(String rideId) {
+      String deleteSql = "DELETE FROM ride WHERE id = :id";
+      Map<String, Object> params = new HashMap<>();
+      params.put("id", rideId);
+      NamedParameterJdbcTemplate namedTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+      namedTemplate.update(deleteSql, params);
    }
 
 }
