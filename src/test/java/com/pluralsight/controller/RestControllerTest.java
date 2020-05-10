@@ -110,7 +110,7 @@ public class RestControllerTest {
 
    @Test(timeout = 4000)
    public void testDeleteRide() {
-      String rideId = String.valueOf(9);
+      String rideId = String.valueOf(14);
       uri = URI.create(local8080 + "/rides/" + rideId);
       RequestEntity<Void> deleteRequest = new RequestEntity<>(HttpMethod.DELETE, uri);
       ResponseEntity<String> deleteResposne = restTemplate.exchange(deleteRequest, String.class);

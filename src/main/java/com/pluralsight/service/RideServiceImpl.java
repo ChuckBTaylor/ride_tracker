@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pluralsight.model.BatchRequest;
 import com.pluralsight.model.Ride;
@@ -38,6 +40,7 @@ public class RideServiceImpl implements RideService {
    }
 
    @Override
+   @Transactional
    public List<Ride> batchUpdateRides(BatchRequest batchRequest) {
       List<Ride> rides = rideRepository.getRides();
       List<Object[]> pairs = new ArrayList<>();
@@ -46,7 +49,9 @@ public class RideServiceImpl implements RideService {
          pairs.add(temp);
       }
       rideRepository.updateRides(pairs);
-      return null;
+      throw new DataAccessException("Test Access Exception Thrown") {
+         private static final long serialVersionUID = -7235004524905594979L;
+      };
    }
 
    @Override
